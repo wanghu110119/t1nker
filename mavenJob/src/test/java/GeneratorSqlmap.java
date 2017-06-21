@@ -3,16 +3,25 @@ import java.io.File;
 import java.util.ArrayList;  
 import java.util.List;  
   
+
+import java.util.UUID;
+
+import mapper.JobMapper;
+
 import org.mybatis.generator.api.MyBatisGenerator;  
 import org.mybatis.generator.config.Configuration;  
 import org.mybatis.generator.config.xml.ConfigurationParser;  
 import org.mybatis.generator.internal.DefaultShellCallback;  
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pojo.Job;
   
   
 public class GeneratorSqlmap {  
   
-  
-    public void generator() throws Exception{  
+	@Autowired
+    private JobMapper jobMapper;
+    public static void generator() throws Exception{  
   
   
         List<String> warnings = new ArrayList<String>();  
@@ -28,14 +37,16 @@ public class GeneratorSqlmap {
   
   
     }   
-    public static void main(String[] args) throws Exception {  
-        try { 
-        	
-            GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();  
-            generatorSqlmap.generator();  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-          
+    
+    public static void main(String[] args) throws Exception {
+    	  try {  
+              generator();  
+              System.out.println("成功");
+          } catch (Exception e) {  
+              e.printStackTrace();  
+              System.out.println("失败");
+          }  
+           System.out.println("------------"); 
+    	
     }  
 }  

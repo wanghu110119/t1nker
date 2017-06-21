@@ -79,7 +79,7 @@
 						<strong>推荐职位</strong>
 					</div>
 					<div class="morebox link_bk">
-						<a href="jobs/jobs_list.jsp" target="_blank">更多职位</a>
+						<a href="joblist.do" target="_blank">更多职位</a>
 					</div>
 					<div class="clear"></div>
 					<c:forEach begin="1" end="24">

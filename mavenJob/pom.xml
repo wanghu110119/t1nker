@@ -19,6 +19,12 @@
 	</properties>
 	
   <dependencies>
+  <!-- 分页 -->
+  <dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>5.0.3-beta</version>
+</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

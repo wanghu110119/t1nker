@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.test.web.client.RequestMatcher;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,6 +92,7 @@ public class UserController {
 	}
 
 	@RequestMapping("emailattestation.do")
+	
 	public ModelAndView emailattestation(User user, String id,
 			HttpSession session) {
 		user = userService.emailattestation(
@@ -98,30 +101,47 @@ public class UserController {
 		mav.setViewName("/personal/resume_1");
 		return mav;
 	}
-
+	
+	
 	@RequestMapping("resume1.do")
-	public ModelAndView resume1(Resume resume, HttpSession session) {
+	public ModelAndView resume1( Resume resume, HttpSession session,Model model) {
 		System.out.println(resume);
 		User user = (User) session.getAttribute("user");
 		resume = userService.addResume(resume, user);
+		model.addAttribute("resume", resume);
 		session.setAttribute("user", user);
 		session.setAttribute("resume", resume);
 		mav.setViewName("/personal/resume_2");
 		return mav;
 	}
 
+
 	@RequestMapping(value = "resume2.do", method = RequestMethod.POST)
-	public ModelAndView resume2(Resume resume, HttpSession session) {
-		System.out.println(resume);
-		Resume resume1 = (Resume) session.getAttribute("resume");
-		resume.setId(resume1.getId());
+	public ModelAndView resume2( Resume resume1, HttpSession session) {
+		System.out.println(resume1);
 		User user = (User) session.getAttribute("user");
+		Resume resume = (Resume) session.getAttribute("resume");
+		resume.setJobtype(resume1.getJobtype());
+		resume.setNearjob(resume1.getNearjob());
+		resume.setWorkplace(resume1.getWorkplace());
+		resume.setMoney(resume1.getMoney());
+		resume.setJobwanted(resume1.getJobwanted());
 		userService.updateResume(resume, user);
-		resume = userService.findById(resume);
-		session.setAttribute("user", user);
+		System.out.println(resume+"22222222");
 		session.setAttribute("resume", resume);
 		mav.setViewName("/personal/resume_3");
 		return mav;
 	}
-
+	@RequestMapping(value = "resume3.do", method = RequestMethod.POST)
+	public ModelAndView resume3( String jobAdvantage, HttpSession session) {
+		System.out.println("========"+jobAdvantage);
+		User user = (User) session.getAttribute("user");
+		Resume resume = (Resume) session.getAttribute("resume");
+		resume.setJobadvantage(jobAdvantage);
+		userService.updateResume(resume, user);
+		System.out.println(resume+"22222222");
+		session.setAttribute("resume", resume);
+		mav.setViewName("/personal/resume_4");
+		return mav;
+	}
 }

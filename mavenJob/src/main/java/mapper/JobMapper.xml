@@ -3,12 +3,12 @@
 <mapper namespace="mapper.JobMapper">
   <resultMap id="BaseResultMap" type="pojo.Job">
     <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="com_id" jdbcType="VARCHAR" property="comId" />
+    <result column="comid" jdbcType="VARCHAR" property="comId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="fresh" jdbcType="TINYINT" property="fresh" />
     <result column="number" jdbcType="INTEGER" property="number" />
-    <result column="time" jdbcType="INTEGER" property="time" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
     <result column="jobtype" jdbcType="VARCHAR" property="jobtype" />
     <result column="workplace" jdbcType="VARCHAR" property="workplace" />
     <result column="education" jdbcType="VARCHAR" property="education" />
@@ -83,7 +83,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, com_id, name, sex, fresh, number, time, jobtype, workplace, education, workexperience, 
+    id, comid, name, sex, fresh, number, time, jobtype, workplace, education, workexperience, 
     jobtitle, money, information, opendate, byemail, relationpeople, relationemail, relationqq, 
     relationphone, relationaddress
   </sql>
@@ -118,7 +118,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="pojo.Job">
-    insert into job (id, com_id, name, 
+    insert into job (id, comid, name, 
       sex, fresh, number, 
       time, jobtype, workplace, 
       education, workexperience, jobtitle, 
@@ -142,7 +142,7 @@
         id,
       </if>
       <if test="comId != null">
-        com_id,
+        comid,
       </if>
       <if test="name != null">
         name,
@@ -281,7 +281,7 @@
         id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.comId != null">
-        com_id = #{record.comId,jdbcType=VARCHAR},
+        comid = #{record.comId,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -348,7 +348,7 @@
   <update id="updateByExample" parameterType="map">
     update job
     set id = #{record.id,jdbcType=VARCHAR},
-      com_id = #{record.comId,jdbcType=VARCHAR},
+      comid = #{record.comId,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=INTEGER},
       fresh = #{record.fresh,jdbcType=TINYINT},
@@ -376,7 +376,7 @@
     update job
     <set>
       <if test="comId != null">
-        com_id = #{comId,jdbcType=VARCHAR},
+        comid = #{comId,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -438,9 +438,15 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectIf" resultType="pojo.Job">
+  	select * from job
+  </select>
+  <select id="findnewAll" resultType="pojo.Job">
+  	select * from job order by name desc
+  </select>
   <update id="updateByPrimaryKey" parameterType="pojo.Job">
     update job
-    set com_id = #{comId,jdbcType=VARCHAR},
+    set comid = #{comId,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       fresh = #{fresh,jdbcType=TINYINT},

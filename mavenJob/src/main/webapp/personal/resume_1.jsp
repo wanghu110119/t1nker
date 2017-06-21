@@ -8,6 +8,41 @@
 <title>我的简历 - 个人会员中心 - 人才系统</title>
 <link rel="shortcut icon" href="//favicon.ico" />
 <link href="styles/user.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+li:hover {
+	background: #aaa;
+}
+
+ul {
+	display: none;
+}
+
+ul li {
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+										$(function(){
+                                $("#box1").bind({
+                                        "mouseenter":function(){
+                                                $(this).find("ul").show();
+                                                $("#td1").attr("valign","top");
+                                        },
+                                        "mouseleave":function(){
+                                                $(this).find("ul").hide();
+                                                $("#td1").attr("valign","middle");
+                                        },
+                                        "click":function(event){
+                                                if (event.target.tagName == "LI") {
+                                                        $(this).find("input").val($(event.target).text()); //传具体的文字
+                                                //        $(this).find("input").val($(event.target).attr("data-value"));  传属性值
+                                                }
+                                                $(this).find("ul").hide();
+                                        }
+                                });
+                                });
+										</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -99,15 +134,6 @@
 										<tr>
 											<td height="23" align="right"><strong
 												style="color:#FF0000">*</strong>工作经验：</td>
-									<script type="text/javascript" src="jquery-3.2.1.js"></script>
-										<script type="text/javascript">
-										$(document).ready(function(){
-											$("experience_cn").click(function(){
-												("menu1").html()
-											});
-										
-										});
-										</script>
 											<td>
 												<!-- <div>
 													<input type="text" value="请选择工作经验" readonly="readonly"
@@ -183,7 +209,7 @@
 
 										<tr>
 											<td height="23" align="right">特长标签：</td>
-											<td>
+											<td id="#td1">
 											<!-- <select name="hobby" style="width:208px;height:26px">
 											<option value="未选择" >请选择</option>
 											<option value="" ><input type="checkbox"
@@ -195,12 +221,11 @@
 											<option value="" ></option>
 											<option value="" ></option>
 											</select> -->
-												<!-- <div>
+												<div id="box1">
 													<input type="text" value="请选择特长标签" readonly="readonly"
 														name="tag_cn" id="tag_cn"
 														class="input_text_200 input_text_200_selsect" /> <input
 														name="tag" id="tag" type="hidden" value="" />
-													<div id="menutag" class="hobby">
 														<div class="tit">精准的选择标签可有效提高求职效果，可多选，最多可以选择5项</div>
 														<ul>
 															<li><label><input type="checkbox"
@@ -251,8 +276,7 @@
 														<div align="center">
 															<br /> <input type="button" class="but80 Set" value="确定" />
 														</div>
-													</div>
-												</div> -->
+												</div>
 											</td>
 										</tr>
 

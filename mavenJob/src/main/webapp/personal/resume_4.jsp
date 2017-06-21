@@ -7,7 +7,43 @@
 <title>我的简历 - 个人会员中心 - 人才系统</title>
 <link rel="shortcut icon" href="//favicon.ico" />
 <link href="styles/user.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+li:hover {
+	background: #aaa;
+}
 
+ul {
+	display: none;
+}
+
+ul li {
+	cursor: pointer;
+}
+</style>
+<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+										
+											
+										$(function(){
+                                $("#box1").bind({
+                                        "mouseenter":function(){
+                                                $(this).find("ul").show();
+                                                $("#td1").attr("valign","top");
+                                        },
+                                        "mouseleave":function(){
+                                                $(this).find("ul").hide();
+                                                $("#td1").attr("valign","middle");
+                                        },
+                                        "click":function(event){
+                                                if (event.target.tagName == "LI") {
+                                                        $(this).find("input").val($(event.target).text()); //传具体的文字
+                                                //        $(this).find("input").val($(event.target).attr("data-value"));  传属性值
+                                                }
+                                                $(this).find("ul").hide();
+                                        }
+                                });
+                                });
+										</script>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -72,12 +108,11 @@
                 <td><input name="speciality" type="text" class="input_text_200" id="speciality" maxlength="20" /></td>
               </tr>
               <tr>
-                <td width="268" height="23" align="right" valign="top"><strong  style="color:#FF0000">*</strong>选择学历：</td>
-                <td>
-				<div>
+                <td  width="268" height="23" align="right" valign="top"><strong  style="color:#FF0000">*</strong>选择学历：</td>
+                <td id = "td1">
+				<div id="box1" style="width: 212px">
 		<input type="text" value="请选择学历"  readonly="readonly" name="education_cn" id="education_cn" class="input_text_200 input_text_200_selsect"/>
 		<input name="education" id="education" type="hidden" value="" />
-		<div id="menu3" class="menu">
 			<ul>
 						<li id="65" title="初中">初中</li>
 						<li id="66" title="高中">高中</li>
@@ -90,7 +125,6 @@
 						<li id="73" title="博后">博后</li>
 						</ul>
 		</div>
-		  </div>				
 				</td>
               </tr>
               <tr>

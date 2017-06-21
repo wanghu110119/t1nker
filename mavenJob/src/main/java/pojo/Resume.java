@@ -18,6 +18,8 @@ public class Resume {
     private Integer height;
 
     private Byte married;
+    
+    private String jobadvantage;
 
     private String experience;
 
@@ -85,28 +87,46 @@ public class Resume {
 
     
     
-    @Override
+    
+
+	public String getJobadvantage() {
+		return jobadvantage;
+	}
+
+
+	@Override
 	public String toString() {
 		return "Resume [id=" + id + ", resumename=" + resumename + ", uid="
 				+ uid + ", name=" + name + ", gender=" + gender + ", brithday="
 				+ brithday + ", height=" + height + ", married=" + married
-				+ ", experience=" + experience + ", idaddress=" + idaddress
-				+ ", educational=" + educational + ", hobby=" + hobby
-				+ ", phone=" + phone + ", email=" + email + ", address="
-				+ address + ", qq=" + qq + ", blog=" + blog + ", get=" + get
-				+ ", jobtype=" + jobtype + ", nearjob=" + nearjob
-				+ ", workplace=" + workplace + ", money=" + money
-				+ ", jobwanted=" + jobwanted + ", studystart=" + studystart
-				+ ", studyover=" + studyover + ", school=" + school
-				+ ", major=" + major + ", photo=" + photo + ", jobstart="
-				+ jobstart + ", jobover=" + jobover + ", companyname="
-				+ companyname + ", companyinformation=" + companyinformation
-				+ ", workin=" + workin + ", showing=" + showing
-				+ ", trainstart=" + trainstart + ", trainover=" + trainover
-				+ ", trainplace=" + trainplace + ", class1=" + class1
-				+ ", classinformation=" + classinformation + ", date=" + date
-				+ "]";
+				+ ", jobadvantage=" + jobadvantage + ", experience="
+				+ experience + ", idaddress=" + idaddress + ", educational="
+				+ educational + ", hobby=" + hobby + ", phone=" + phone
+				+ ", email=" + email + ", address=" + address + ", qq=" + qq
+				+ ", blog=" + blog + ", get=" + get + ", jobtype=" + jobtype
+				+ ", nearjob=" + nearjob + ", workplace=" + workplace
+				+ ", money=" + money + ", jobwanted=" + jobwanted
+				+ ", studystart=" + studystart + ", studyover=" + studyover
+				+ ", school=" + school + ", major=" + major + ", photo="
+				+ photo + ", jobstart=" + jobstart + ", jobover=" + jobover
+				+ ", companyname=" + companyname + ", companyinformation="
+				+ companyinformation + ", workin=" + workin + ", showing="
+				+ showing + ", trainstart=" + trainstart + ", trainover="
+				+ trainover + ", trainplace=" + trainplace + ", class1="
+				+ class1 + ", classinformation=" + classinformation + ", date="
+				+ date + "]";
 	}
+
+
+	public void setJobadvantage(String jobadvantage) {
+		this.jobadvantage = jobadvantage;
+	}
+
+
+	public void setBrithday(String brithday) {
+		this.brithday = brithday;
+	}
+
 
 	public String getId() {
         return id;

@@ -1,8 +1,10 @@
 package mapper;
 
 import java.util.List;
+
 import pojo.Job;
 import pojo.JobExample;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface JobMapper {
@@ -27,4 +29,8 @@ public interface JobMapper {
     int updateByPrimaryKeySelective(Job record);
 
     int updateByPrimaryKey(Job record);
+
+	List<Job> selectIf(int pageCode);
+
+	List<Job> findnewAll(int i);
 }

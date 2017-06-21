@@ -15,7 +15,7 @@ public class Job {
 
     private Integer number;
 
-    private Integer time;
+    private String time;
 
     private String jobtype;
 
@@ -93,11 +93,11 @@ public class Job {
         this.number = number;
     }
 
-    public Integer getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

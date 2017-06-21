@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,17 @@
 <link href="styles/jobs.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<script type="text/javascript" src="jquery-3.2.1.js"></script>
+	<script type="text/javascript">
+		function goPage(p) {
+			if (p<1 || p>${pageBean.pages}) {
+				return;
+			}
+			$("#page").val(p);
+			location.href = "${pageContext.request.contextPath}/joblist.do?pageCode1="
+					+ p;
+		}
+	</script>
 	<jsp:include page="../header.jsp" />
 	<!--导航 -->
 	<div class="floatnav">
@@ -29,15 +41,52 @@
 		<div class="tit">
 			<div class="left">
 				<h2>推荐职位</h2>
+				<ul class="link_bk">
+					<c:forEach var="list" items="${joblist }">
+						<li><a href="" target="_blank">${list.comId }</a> <a href=""
+							target="_blank" class="jobsname">${list.name }</a></li>
+					</c:forEach>
+				</ul>
+				<br> <br>
 			</div>
-			<div class="right link_bk">
-				<a href="" target="_blank">我也要出现在这里！</a>
+			<div class='pages_bar'>
+				<a href='javascript:goPage(1)' id="first">首页</a> <a
+					href='javascript:goPage(${pageBean.pageNum-1})' id="first">上一页</a>
+				<%-- <c:set var="begin" value="1" />
+				<c:set var="end" value="10" />
+				<c:if test="${page.pageCode > 6 }">
+					<c:set var="begin" value="${pageBean.pageCode-5}" />
+					<c:set var="end" value="${pageBean.pageCode+4 }" />
+				</c:if>
+				<c:choose>
+					<c:when test="${pageBean.totalPage <=10 }">
+						<c:set var="begin" value="1" />
+						<c:set var="end" value="${pageBean.totalPage}" />
+					</c:when>
+					<c:otherwise>
+						<c:if test="${pageBean.pageCode >= pageBean.totalPage -4 }">
+							<c:set var="begin" value="${pageBean.totalPage -9 }" />
+							<c:set var="end" value="${pageBean.totalPage }" />
+						</c:if>
+					</c:otherwise>
+				</c:choose> --%>
+				<c:forEach begin="${pageBean.navigateFirstPage }" end="${pageBean.navigateLastPage }" var="p">
+					<a href="javascript:goPage('${p}')">${p}</a>
+				</c:forEach>
+				<input type="hidden" name="pageCode" id="page" value="1" />
+				 <a href='javascript:goPage(${pageBean.pageNum+1})' id="first">下一页</a>
+				<a href='javascript:goPage(${pageBean.pages})' id="last">尾页</a>
+				<span>当前第${pageBean.pageNum}页/共${pageBean.pages}页</span>
 			</div>
-			<div class="clear"></div>
 		</div>
-		<ul class="link_bk">
-		</ul>
+		<div class="right link_bk">
+			<a href="" target="_blank">我也要出现在这里！</a>
+		</div>
 		<div class="clear"></div>
+	</div>
+	<ul class="link_bk">
+	</ul>
+	<div class="clear"></div>
 	</div>
 	<div class="jobsbox">
 		<div class="tit">
@@ -50,9 +99,10 @@
 			<div class="clear"></div>
 		</div>
 		<ul class="link_bk">
-			<li><a href="company/comp_view.jsp" target="_blank">中软国际</a> <a
-				href="jobs/jobs_view.jsp" target="_blank" class="jobsname">Java程序员</a>
-			</li>
+			<c:forEach var="list" items="${joblist2 }">
+				<li><a href="" target="_blank">${list.comId }</a> <a href=""
+					target="_blank" class="jobsname">${list.name }</a></li>
+			</c:forEach>
 		</ul>
 		<div class="clear"></div>
 	</div>

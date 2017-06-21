@@ -1,7 +1,4 @@
-/com/
+/service/
 /controller/
-/filter/
 /mapper/
 /pojo/
-/service/
-/util/
